@@ -3,18 +3,18 @@ version: "3"
 networks:
   private_network1:
     driver_opts:
-      parent: wlan0
+      parent: ${netInterface}
     ipam:
-      driver: default
+      driver: ${driverType}
       config:
         - subnet: 10.1.0.0/16
           gateway: "10.1.0.1"
 
   private_network2:
     driver_opts:
-      parent: wlan0
+      parent: ${netInterface}
     ipam:
-      driver: default
+      driver: ${driverType}
       config:
         - subnet: 12.2.0.0/16
           gateway: "12.2.0.1"
@@ -22,18 +22,18 @@ networks:
 
   private_network3:
     driver_opts:
-      parent: wlan0
+      parent: ${netInterface}
     ipam:
-      driver: default
+      driver: ${driverType}
       config:
         - subnet: 13.3.0.0/16
           gateway: "13.3.0.1"
 
   private_network4:
     driver_opts:
-      parent: wlan0
+      parent: ${netInterface}
     ipam:
-      driver: default
+      driver: ${driverType}
       config:
         - subnet: 14.4.0.0/16
           gateway: "14.4.0.1"
