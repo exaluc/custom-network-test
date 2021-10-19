@@ -1,0 +1,96 @@
+version: "3"
+
+networks:
+  private_network1:
+    driver_opts:
+      parent: wlan0
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.1.0.0/16
+          gateway: "10.1.0.1"
+
+  private_network2:
+    driver_opts:
+      parent: wlan0
+    ipam:
+      driver: default
+      config:
+        - subnet: 12.2.0.0/16
+          gateway: "12.2.0.1"
+
+
+  private_network3:
+    driver_opts:
+      parent: wlan0
+    ipam:
+      driver: default
+      config:
+        - subnet: 13.3.0.0/16
+          gateway: "13.3.0.1"
+
+  private_network4:
+    driver_opts:
+      parent: wlan0
+    ipam:
+      driver: default
+      config:
+        - subnet: 14.4.0.0/16
+          gateway: "14.4.0.1"
+
+services:        
+  ping1:
+    image: alpine:3.14
+    command: >
+      sh -c "sleep ${sleepTime} &&
+             chmod +x /tmp/ping/script.sh &&
+             sh /tmp/ping/script.sh"
+
+    volumes:
+        - ./results:/tmp/results
+        - ./ping:/tmp/ping
+    hostname: ping1
+    networks:
+      private_network1:
+
+  ping2:
+    image: alpine:3.14
+    command: >
+      sh -c "sleep ${sleepTime} &&
+             chmod +x /tmp/ping/script.sh &&
+             sh /tmp/ping/script.sh"
+
+    volumes:
+        - ./results:/tmp/results
+        - ./ping:/tmp/ping
+    hostname: ping2
+    networks:
+      private_network2:
+
+  ping3:
+    image: alpine:3.14
+    command: >
+      sh -c "sleep ${sleepTime} &&
+             chmod +x /tmp/ping/script.sh &&
+             sh /tmp/ping/script.sh"
+
+    volumes:
+        - ./results:/tmp/results
+        - ./ping:/tmp/ping
+    hostname: ping3
+    networks:
+      private_network3:
+
+  ping4:
+    image: alpine:3.14
+    command: >
+      sh -c "sleep ${sleepTime} &&
+             chmod +x /tmp/ping/script.sh &&
+             sh /tmp/ping/script.sh"
+
+    volumes:
+        - ./results:/tmp/results
+        - ./ping:/tmp/ping
+    hostname: ping4
+    networks:
+      private_network4:
